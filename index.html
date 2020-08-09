@@ -23,6 +23,14 @@
       ctx.strokeStyle = "none";
 
       var isTouchDevice = "ontouchstart" in document.documentElement;
+      document.body.addEventListener(
+        "touchmove",
+        function (e) {
+          if (e._isScroller) return; // 阻止默认事件
+          e.preventDefault();
+        },
+        { passive: false }
+      );
 
       if (isTouchDevice) {
         canvas.ontouchstart = (e) => {
